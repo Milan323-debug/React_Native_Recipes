@@ -1,50 +1,115 @@
-# Welcome to your Expo app 👋
+# Recipes App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A full-stack Recipe Recommendation application with a Node.js/Express backend and a React Native (Expo) mobile frontend. Users can sign up, log in, add recipes, favorite them, and view recommendations.
 
-## Get started
+---
 
-1. Install dependencies
+## 📱 App Interface Screenshots
 
-   ```bash
-   npm install
-   ```
+<table>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/5de898dc-cba2-4b61-bcd6-958b0c9ea302" width="200"/><br/><sub>Sign Up Screen</sub></td>
+    <td><img src="https://github.com/user-attachments/assets/7a14483d-3b68-43f1-a8fe-46b02584eeb4" width="200"/><br/><sub>Login Screen</sub></td>
+    <td><img src="https://github.com/user-attachments/assets/301579fa-8d88-4ebd-8b61-f3db543fa5da" width="200"/><br/><sub>Profile Screen</sub></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/a2877f77-0daf-4a9d-903c-812f524658c6" width="200"/><br/><sub>Profile Screen(With Recomended Books)</sub></td>
+    <td><img src="https://github.com/user-attachments/assets/1121aba1-89a0-4357-b371-a4581e674a46" width="200"/><br/><sub>Create Book</sub></td>
+    <td><img src="https://github.com/user-attachments/assets/444e5674-dee5-4126-bbf8-b0898e84a367" width="200"/><br/><sub>Home Page</sub></td>
+  </tr>
+</table>
 
-2. Start the app
 
-   ```bash
-   npx expo start
-   ```
+---
 
-In the output, you'll find options to open the app in a
+## Features
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- User authentication (signup, login, logout)
+- Add, view, and favorite recipes
+- Recipe images and descriptions
+- User profile management
+- Recipe ratings (if implemented)
+- Modern mobile UI with Expo
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Tech Stack
 
-## Get a fresh project
+- **Backend:** Node.js, Express, (your DB, e.g., PostgreSQL/SQLite/Drizzle)
+- **Frontend:** React Native (Expo)
+- **Authentication:** Clerk
 
-When you're ready, run:
+## Project Structure
 
-```bash
-npm run reset-project
+```
+FODIFY/
+├── backend/
+│   ├── package.json
+│   └── src/
+│       ├── server.js
+│       ├── config/
+│       ├── db/
+│       └── ...
+└── mobile/
+    ├── app.json
+    ├── package.json
+    ├── app/
+    ├── assets/
+    ├── components/
+    ├── constants/
+    ├── hooks/
+    ├── services/
+    └── ...
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Getting Started
 
-## Learn more
+### Backend
 
-To learn more about developing your project with Expo, look at the following resources:
+1. Install dependencies:
+   ```sh
+   cd backend
+   npm install
+   ```
+2. Set up a `.env` file with your DB URI and Clerk credentials.
+3. Start the server:
+   ```sh
+   npm start
+   ```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### Mobile App
 
-## Join the community
+1. Install dependencies:
+   ```sh
+   cd mobile
+   npm install
+   ```
+2. Start the Expo development server:
+   ```sh
+   npx expo start
+   ```
+3. Use the Expo Go app or an emulator to run the app on your device.
 
-Join our community of developers creating universal apps.
+## API Endpoints (Backend)
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- `POST /api/auth/signup` — Register a new user
+- `POST /api/auth/login` — User login
+- `POST /api/recipes` — Add a new recipe (auth required)
+- `GET /api/recipes` — List all recipes
+- `GET /api/recipes/:id` — Get recipe details
+- `PUT /api/recipes/:id` — Update a recipe (auth required)
+- `DELETE /api/recipes/:id` — Delete a recipe (auth required)
+
+## Recipe Model Example
+
+```js
+{
+  title: String, // required, unique
+  description: String, // required
+  image: String, // required (URL)
+  rating: Number, // optional, min: 1, max: 5
+  user: ObjectId, // reference to User
+}
+```
+
+## License
+
+This project is for educational purposes.
